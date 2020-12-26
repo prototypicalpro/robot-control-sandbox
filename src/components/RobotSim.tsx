@@ -84,7 +84,9 @@ const RobotSim: React.FunctionComponent<{
     Controllers.NO_CONTROLLER
   );
   const [factory, setFactory] = React.useState<{factory: ControllerFactory}>();
-  const [carSelection, setCarSelection] = React.useState(CAR_CONFIGURATIONS.THREE_ROBOTS);
+  const [carSelection, setCarSelection] = React.useState(
+    CAR_CONFIGURATIONS.THREE_ROBOTS
+  );
   const proccessedTickRef = React.useRef<number>(0);
   const canvasRef = React.useRef<HTMLCanvasElement>(null);
   const engineRef = React.useRef(Engine.create());
