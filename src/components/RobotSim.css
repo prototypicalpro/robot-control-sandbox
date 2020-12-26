@@ -1,0 +1,12 @@
+.robot-sim-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "canvas canvas canvas canvas canvas"
+    "editor editor powGraph posGraph velGraph"
+    "editor editor powGraph posGraph velGraph";
+}
