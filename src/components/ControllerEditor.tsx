@@ -28,25 +28,33 @@ export default function ControllerEditor({
   style?: React.CSSProperties;
 }) {
   const [code, setCode] = React.useState(initialCode);
+  const codeRef = React.useRef<string>();
   const [error, setError] = React.useState<string>();
 
   React.useEffect(() => {
-    let Controller;
-    try {
-      // I know I know
-      // eslint-disable-next-line no-new-func
-      Controller = Function(`"use strict"; ${code}; return Controller;`)();
-      const controllerInstance = new Controller();
-      if (!(controllerInstance instanceof Controller))
-        throw new Error('Not a class');
-      if (!(controllerInstance.step instanceof Function))
-        throw new Error('No step() function on class');
-    } catch (e) {
-      setError(e.toString().split('\n')[0]);
-      return;
+    setCode(initialCode);
+  }, [initialCode]);
+
+  React.useEffect(() => {
+    if (code !== codeRef.current) {
+      codeRef.current = code;
+      let Controller;
+      try {
+        // I know I know
+        // eslint-disable-next-line no-new-func
+        Controller = Function(`"use strict"; ${code}; return Controller;`)();
+        const controllerInstance = new Controller();
+        if (!(controllerInstance instanceof Controller))
+          throw new Error('Not a class');
+        if (!(controllerInstance.step instanceof Function))
+          throw new Error('No step() function on class');
+      } catch (e) {
+        setError(e.toString().split('\n')[0]);
+        return;
+      }
+      setError('');
+      onCodeUpdate(Controller as ControllerFactory);
     }
-    setError('');
-    onCodeUpdate(Controller as ControllerFactory);
   }, [code, onCodeUpdate]);
 
   return (
