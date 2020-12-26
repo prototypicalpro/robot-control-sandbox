@@ -1,6 +1,6 @@
 # Robot Control Sandbox
 
-![CI](https://github.com/prototypicalpro/robot-control-demos/workflows/CI/badge.svg?event=push)
+![CI](https://github.com/prototypicalpro/robot-control-sandbox/workflows/CI/badge.svg)
 
 This website is a simple environment to experiment with robot control software and learn about closed loop systems. It was originally built for my [DootCamp robotics talk](https://github.com/prototypicalpro/robot-control-demos).
 
